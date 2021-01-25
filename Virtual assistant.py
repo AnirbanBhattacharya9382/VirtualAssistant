@@ -38,8 +38,8 @@ def takeCommand():
         query = r.recognize_google(audio, language= "en-in")
         print(f"You said: {query}\n")
     except Exception as e:
-        print("I can't understand what you are saying.")
-        speak("I cant't understand what you are saying")
+        print("I cannot understand what you are saying.")
+        speak("I cannot understand what you are saying")
         return "None"
     return query
 while True:
@@ -77,6 +77,8 @@ while True:
                             elif "time" in query:
                                 timeNow()
                             elif "hibernate yourself" in query:
+                                speak("closing components of swift...")
+                                speak("moving to hibernate mode...")
                                 os.system(r'rundll32.exe powrprof.dll,SetSuspendState Hibernate')
                             elif "wake up" in query:
                                 speak("I am always awake sir.")
@@ -98,7 +100,7 @@ while True:
                                 speak("openning vs code sir")
                                 os.startfile("C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/Code.exe")
                             elif ("don't disturb" in query or "stop disturbing" in query):
-                                speak("Oh sorry sir!I didn't knew i was annoying you.")
+                                speak("Oh sorry sir! I didn't knew i was annoying you.")
                                 quit()
                             elif ("meaning" in query):
                                 speak("please wait sir.")
@@ -108,12 +110,40 @@ while True:
                                 speak(f"according to wikipedia")
                                 speak(results)
                                 print(results)
+                            elif("add" in query and "numbers" in query):
+                                speak("Of course sir")
+                                speak("Tell me the numbers")
+                                query = takeCommand()
+                                query = query.split("and")
+                                try:
+                                    a = 0
+                                    for i in query:
+                                        j = int(i)
+                                        a += j
+                                    speak(f"The sum is {a}")
+                                except Exception as e:
+                                    speak("Looks like something is wrong")
+                                    speak("Please spell it correctly.")
+                                    continue
+                            elif("multiply" in query and "numbers" in query):
+                                speak("Of course sir")
+                                speak("Tell me the numbers")
+                                query = takeCommand()
+                                query = query.split("and")
+                                try:
+                                    a = 1
+                                    for i in query:
+                                        j = int(i)
+                                        a *= j
+                                    speak(f"The product is {a}")
+                                except Exception as e:
+                                    speak("Looks like something is wrong")
+                                    speak("Please spell it correctly.")
+                                    continue
                             elif ("swift sleep" in query or "go to sleep" in query or "close yourself" in query):
                                 speak("As you wish sir!")
                                 speak("Closing swift")
                                 wake = False
                                 quit()
-                            else:
-                                speak("I can't understand what you are saying., please elaborate")
-                else :
+                else:
                     continue
